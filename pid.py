@@ -45,10 +45,10 @@ class PID_Controller(object):
 
 
         if(integral > 20):
-            integral = 100
+            integral = 20
 
         elif(integral<-20):
-            integral = -100
+            integral = -20
 
 
         self.integral_sum = integral
