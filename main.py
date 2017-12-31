@@ -2,6 +2,7 @@ import pid
 import pid_camera
 import cv2
 import serial_com as arduino_com
+import pid_plot as plot
 
 
 def main():
@@ -16,21 +17,23 @@ def main():
     x_center = 400
     y_center = 300
 
-    REFRESH_PERIOD = 5
-    ESC_SC = 27
+    pos_plot = plot.PositionPlot()
 
-    SQUARE_SIDE = 140
-    SQUARE_PERIOD = 250
-
+    ''''
+    refresh = 5
+    square_side = 140
+    square_period = 250
+    '''
     if mode == 0:
 
         while 1:
 
             camera.calculate_position()
-            pid_x.compute_pid( x_center - camera.pos_x )
-            pid_y.compute_pid( y_center - camera.pos_y )
+            pos_plot.add(camera.pos_x, camera.pos_y, x_center, y_center)
+            pid_x.compute_pid(x_center - camera.pos_x)
+            pid_y.compute_pid(y_center - camera.pos_y)
 
-            arduino_com.set_angles( pid_x.output, pid_y.output )
+            arduino_com.set_angles(pid_x.output, pid_y.output)
 
             key = cv2.waitKey(1) & 0xFF
             if key == ord("q"):
@@ -38,7 +41,7 @@ def main():
 
     elif mode == 1:
         while 1:
-            #camera.refresh()
+            # camera.refresh()
             pass
 
     camera.reset()
