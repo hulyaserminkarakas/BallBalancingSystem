@@ -23,18 +23,17 @@ class PID_Controller(object):
         self.min_out = .0
         self.max_out = .0
 
-
     def read_file(self, file_path):
         with open(file_path) as file:
 
             lines = file.readlines()
 
-            self.P = float(re.split('\s+',lines[0])[1])
-            self.I = float(re.split('\s+',lines[1])[1])
-            self.D = float(re.split('\s+',lines[2])[1])
-            self.period = float(re.split('\s+',lines[3])[1])
-            self.max_out = float(re.split('\s+',lines[4])[1])
-            self.min_out = float(re.split('\s+',lines[5])[1])
+            self.P = float(re.split('\s+', lines[0])[1])
+            self.I = float(re.split('\s+', lines[1])[1])
+            self.D = float(re.split('\s+', lines[2])[1])
+            self.period = float(re.split('\s+', lines[3])[1])
+            self.max_out = float(re.split('\s+', lines[4])[1])
+            self.min_out = float(re.split('\s+', lines[5])[1])
 
     def compute_pid(self, error):
         #proportional = self.P * error
@@ -43,13 +42,10 @@ class PID_Controller(object):
         derivative = (error - self.l_input)/self.period
         integral = self.integral_sum + (error * self.period)
 
-
-        if(integral > 20):
+        if integral > 20:
             integral = 20
-
-        elif(integral<-20):
+        elif integral < -20:
             integral = -20
-
 
         self.integral_sum = integral
         self.l_input = error

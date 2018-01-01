@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 start_time = time.time()
 
 
-class PositionPlot:
+class PositionPlot(object):
 
     def __init__(self, max_entries=100):
         plt.rcParams["figure.figsize"] = [12, 9]
@@ -61,7 +61,7 @@ class PositionPlot:
     def example():
         plot = PositionPlot()
         while True:
-            plot.add(random.random() * 600, random.random() * 800, 300, 400)
+            plot.add(random.random() * 800, random.random() * 600, 400, 300)
             plt.pause(0.001)
 
 
