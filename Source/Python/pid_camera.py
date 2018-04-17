@@ -10,8 +10,8 @@ class PIDCamera:
 
         self.pos_y = 0
 
-        self.colorLower = (20, 70, 10)
-        self.colorUpper = (200, 250, 200)
+        self.colorLower = (4, 100, 200)
+        self.colorUpper = (100, 255, 255)
 
         self.buffer_pts = deque([])
         self.camera = cv2.VideoCapture(0)

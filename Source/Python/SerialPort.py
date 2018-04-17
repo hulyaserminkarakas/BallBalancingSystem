@@ -1,11 +1,11 @@
 import serial
 
 port = "COM3"
-baud = 9600
+baud = 9600;
 
 ser = serial.Serial(port, baud, timeout=1)
 
-if ser.is_open:
+if(ser.is_open):
     print(ser.name + ' is open...')
 
 

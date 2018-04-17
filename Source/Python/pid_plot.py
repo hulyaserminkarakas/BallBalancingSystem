@@ -1,15 +1,14 @@
 import time, random
 from collections import deque
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
 start_time = time.time()
 
 
-class PositionPlot(object):
+class PositionPlot:
 
     def __init__(self, max_entries=100):
-        plt.ion()
-        plt.rcParams["figure.figsize"] = [8, 6]
+        plt.rcParams["figure.figsize"] = [12, 9]
         x_axes = plt.subplot2grid(shape=(2, 2), loc=(0, 0), colspan=2)
         y_axes = plt.subplot2grid(shape=(2, 2), loc=(1, 0), colspan=2)
         x_axes.set_xlabel('Time(s)')
@@ -57,15 +56,14 @@ class PositionPlot(object):
 
         self.y_axes.relim()
         self.y_axes.autoscale_view()
-        # plt.pause(0.0000001)
-
 
     @staticmethod
     def example():
         plot = PositionPlot()
         while True:
-            plot.add(random.random() * 800, random.random() * 600, 400, 300)
+            plot.add(random.random() * 600, random.random() * 800, 300, 400)
             plt.pause(0.001)
 
 
-
+if __name__ == "__main__":
+    PositionPlot.example()
